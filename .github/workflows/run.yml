@@ -2,7 +2,7 @@ name: Run Stock Script
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # runs every 5 minutes (UTC)
+    - cron: "0 14,16,18,20 * * 1-5"   # runs every 5 minutes (UTC)
   workflow_dispatch:        # allows manual run
 
 jobs:

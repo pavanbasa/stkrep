@@ -24,7 +24,7 @@ jobs:
 
       - name: Run script
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.CHAT_ID }}
+          TOKEN: ${{ secrets.TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
         run: |
           python stock.py

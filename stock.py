@@ -16,22 +16,17 @@ CHAT_ID = os.environ["CHAT_ID"]
 for stock in symbols:
 
     ticker = yf.Ticker(stock)
-
-    # Get latest price
-    #current_price = ticker.info["currentPrice"]
-    #previous_close = ticker.info["previousClose"]
-    
-
-    
+  
     current_price = ticker.fast_info["last_price"]
     previous_close = ticker.fast_info["previous_close"]
 
     trend = "↑" if current_price > previous_close else "↓"
-    stock_name = ticker.info["shortName"]
     
-    lines.append(f"{stock_name:<25} : {trend}{current_price:.2f}")
+    percent_change = ((current_price - previous_close) / previous_close) * 100
+
     
-#message = "📊 Stock Update\n```\n" + "\n".join(lines) + "\n```"
+    lines.append(f"{stock:<10} : {trend}{current_price:.2f} / {percent_change:.2f}%")
+    
 message = "\n".join(lines)
 
 
@@ -42,7 +37,6 @@ url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 requests.post(url, data={
     "chat_id": CHAT_ID,
     "text": message
-    #,"parse_mode": "Markdown"
 })
 
 
